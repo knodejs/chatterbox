@@ -15,3 +15,5 @@ _build
 rebar3
 .rebar3
 log
+priv/bower_components
+priv/node_modules
