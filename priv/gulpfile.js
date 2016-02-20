@@ -1,8 +1,8 @@
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
  
-gulp.task('webserver', function() {
-  gulp.src('app')
+gulp.task('default', function() {
+  gulp.src('')
     .pipe(webserver({
       livereload: true,
       fallback: 'index.html',
