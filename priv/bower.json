@@ -1,21 +1,33 @@
 {
-  "name": "chatterbox",
-  "homepage": "https://github.com/knodejs/chatterbox",
+  "name": "AdminLTE",
+  "homepage": "http://almsaeedstudio.com",
   "authors": [
-    "Narongchai Thongkongkeaw <knodejs@gmail.com>"
+    "Abdullah Almsaeed <support@almsaeedstudio.com>"
   ],
-  "description": "",
-  "main": "",
-  "moduleType": [],
+  "description": "Admin dashboard and control panel template",
+  "main": [
+    "index2.html",
+    "dist/css/AdminLTE.css",
+    "dist/js/app.js",
+    "build/less/AdminLTE.less"
+  ],
+  "keywords": [
+    "css",
+    "js",
+    "html",
+    "template",
+    "admin",
+    "bootstrap",
+    "theme",
+    "backend",
+    "responsive"
+  ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
+    "/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "^2.2.0"
-  }
+    "composer.json",
+    "documentation"
+  ]
 }
