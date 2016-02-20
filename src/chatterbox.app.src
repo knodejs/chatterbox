@@ -13,6 +13,7 @@
                   hpack,
                   lager
                  ]},
+  {mod, { chatterbox_app, []}}, %%Start App
   {env, [
     {port, 80},
     {concurrent_acceptors, 20},

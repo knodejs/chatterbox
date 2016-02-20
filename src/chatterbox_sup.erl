@@ -35,6 +35,7 @@ init([]) ->
     Children = [{socket,
                 {http2_socket, start_server_link, [{Transport, ListenSocket}, SSLOptions]}, % pass the socket!
                 temporary, 1000, worker, [http2_socket]}],
+    io:format("app listening on port ~p~n",[Port]),
     {ok, {Restart, Children}}.
 
 start_socket() ->
