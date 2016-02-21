@@ -11,8 +11,8 @@ start(Config) ->
     PreDataSettings = [
     {port, 8081},
     {ssl, ?config(ssl, Config2)},
-    {ssl_options, [{certfile,   "../../../../config/localhost.crt"},
-                   {keyfile,    "../../../../config/localhost.key"},
+    {ssl_options, [{certfile,   "E:/GitHubLocal/chatterbox/config/localhost.crt"},
+                   {keyfile,    "E:/GitHubLocal/chatterbox/config/localhost.key"},
                    {honor_cipher_order, false},
                    {versions, ['tlsv1.2']},
                    {alpn_preferred_protocols, [<<"h2">>]}]}

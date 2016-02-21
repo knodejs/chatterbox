@@ -28,7 +28,7 @@ spawn_handle(Pid, StreamId, Headers, ReqBody) ->
 handle(ConnPid, StreamId, Headers, _ReqBody) ->
     
     IsJsonRequest=is_json_request(Headers),
-    io:format("IsJsonRequest :~p~n",[IsJsonRequest]),
+    lager:debug("IsJsonRequest :~p",[IsJsonRequest]),
 
     lager:debug("handle(~p, ~p, ~p, _)", [ConnPid, StreamId, Headers]),
     Path = binary_to_list(proplists:get_value(<<":path">>, Headers)),

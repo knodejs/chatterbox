@@ -16,6 +16,8 @@ endif
 clean: $(REBAR3)
 	@$(REBAR3) clean
 	rm -rf _build
+	rm -rf tmp
+	rm -rf log
 
 all: $(REBAR3)
 	@$(REBAR3) do clean, compile, eunit, ct, dialyzer

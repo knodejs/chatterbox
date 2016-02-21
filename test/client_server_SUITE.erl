@@ -29,7 +29,7 @@ complex_request(_Config) ->
          {<<":method">>, <<"GET">>},
          {<<":path">>, <<"/index.html">>},
          {<<":scheme">>, <<"https">>},
-         {<<":authority">>, <<"localhost:8080">>},
+         {<<":authority">>, <<"localhost:8081">>},
          {<<"accept">>, <<"*/*">>},
          {<<"accept-encoding">>, <<"gzip, deflate">>},
          {<<"user-agent">>, <<"chattercli/0.0.1 :D">>}
@@ -49,7 +49,7 @@ upgrade_tcp_connection(_Config) ->
          {<<":method">>, <<"GET">>},
          {<<":path">>, <<"/index.html">>},
          {<<":scheme">>, <<"https">>},
-         {<<":authority">>, <<"localhost:8080">>},
+         {<<":authority">>, <<"localhost:8081">>},
          {<<"accept">>, <<"*/*">>},
          {<<"accept-encoding">>, <<"gzip, deflate">>},
          {<<"user-agent">>, <<"chattercli/0.0.1 :D">>}
