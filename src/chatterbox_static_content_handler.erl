@@ -26,6 +26,10 @@ spawn_handle(Pid, StreamId, Headers, ReqBody) ->
         iodata()
        ) -> ok.
 handle(ConnPid, StreamId, Headers, _ReqBody) ->
+    
+    IsJsonRequest=is_json_request(Headers),
+    io:format("IsJsonRequest :~p~n",[IsJsonRequest]),
+
     lager:debug("handle(~p, ~p, ~p, _)", [ConnPid, StreamId, Headers]),
     Path = binary_to_list(proplists:get_value(<<":path">>, Headers)),
 
@@ -53,7 +57,8 @@ handle(ConnPid, StreamId, Headers, _ReqBody) ->
 
     %% TODO: Logic about "/" vs "index.html", "index.htm", etc...
     %% Directory browsing?
-    File = RootDir ++ Path4,
+    %%File = RootDir ++ Path4,
+    File = check_path(RootDir,Path4,Headers),
     lager:debug("[chatterbox_static_content_handler] serving ~p on stream ~p", [File, StreamId]),
     %%lager:info("Request Headers: ~p", [Headers]),
 
@@ -98,6 +103,8 @@ handle(ConnPid, StreamId, Headers, _ReqBody) ->
 
                     lager:debug("Resources to push: ~p", [Resources]),
 
+                    ResourceInternals=remove_external_resource(Resources),
+
                     NewStreams =
                         lists:foldl(fun(R, Acc) ->
                                             NewStreamId = http2_connection:new_stream(ConnPid),
@@ -106,7 +113,7 @@ handle(ConnPid, StreamId, Headers, _ReqBody) ->
                                             [{NewStreamId, PHeaders}|Acc]
                                     end,
                                     [],
-                                    Resources
+                                    ResourceInternals
                                    ),
 
                     lager:debug("New Streams for promises: ~p", [NewStreams]),
@@ -142,3 +149,61 @@ generate_push_promise_headers(Request, Path) ->
 dot_hack(<<$.,Bin/binary>>) ->
     Bin;
 dot_hack(Bin) -> Bin.
+
+
+
+%%Check For Show Default Homepage
+check_path(RootDir,Path,Headers) ->
+    PathFile=case Path of 
+                "/" -> 
+                    RootDir ++"/index.html";
+                _ -> 
+                    File=RootDir ++Path,
+                    case filelib:is_file(File) of 
+                        true ->
+                            File;
+                        _ ->
+                            case is_angular_refresh(Headers) of 
+                                true ->
+                                    RootDir ++"/index.html";
+                                _ ->
+                                    File
+                            end
+                    end
+            end,
+    %%io:format("Path File ~p~n",[PathFile]),
+    PathFile.
+
+%%remove http https from external site
+remove_external_resource(Resources)->
+    lists:filter(fun(X) -> string:str(binary_to_list(X),"http") < 1 end, Resources).
+
+
+is_json_request(Headers) ->
+    %%io:format("Headers ~p~n",[Headers]),
+    Accept=jsn:get(<<"accept">>, Headers),
+    Path=jsn:get(<<":path">>, Headers),
+    %%io:format("Accept ~p~n",[Accept]),
+    IsJson=case Accept of 
+        undefined ->
+            false;
+        _ -> 
+            %%io:format("binary_to_list(Accept) ~p~n",[binary_to_list(Accept)]),
+            string:str(binary_to_list(Accept),"json") >0
+    end,
+    IsHtml=case string:str(binary_to_list(Path),"html") >0 of 
+                true ->
+                    false;
+                _ ->
+                    IsJson
+            end,
+    IsHtml.
+
+is_angular_refresh(Headers) ->
+    Accept=jsn:get(<<"accept">>, Headers),
+    case Accept of 
+        undefined ->
+            false;
+        _ -> 
+            string:str(binary_to_list(Accept),"html") >0
+    end.

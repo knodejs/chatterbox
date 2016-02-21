@@ -38,6 +38,11 @@
     "ng-sockjs": "~0.0.1",
     "angular-uuid-service": "~0.1.0",
     "ngstorage": "~0.3.9",
-    "angucomplete-alt": "~2.0.3"
+    "angucomplete-alt": "~2.0.3",
+    "angular-ui-router": "^0.2.18",
+    "font-awesome": "^4.5.0",
+    "Ionicons": "ionicons#^2.0.1",
+    "angular-flot": "^0.0.16",
+    "raphael": "^2.1.4"
   }
 }

@@ -18,11 +18,14 @@ if (typeof jQuery === "undefined") {
     throw new Error("AdminLTE requires jQuery");
 }
 
-var mnTravel = angular.module('mnTravel', 
-  ['ui.router', 'chart.js', 'angular-flot', 'ui.bootstrap', 'ng.sockjs', 'uuid', 'ngStorage','angucomplete-alt']);
+var mnTravel = angular.module('mnTravel', ['ui.router', 'chart.js', 'angular-flot', 'ui.bootstrap', 'ng.sockjs', 'uuid', 'ngStorage', 'angucomplete-alt']);
 
-mnTravel.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('/hotel');
+mnTravel.config(['$locationProvider','$urlRouterProvider', '$stateProvider', function($locationProvider,$urlRouterProvider, $stateProvider) {
+    $urlRouterProvider.otherwise('/dashboard1');
+
+    // use the HTML5 History API
+    $locationProvider.html5Mode(true);
+
     $stateProvider
         .state('dashboard1', {
             url: '/dashboard1',
@@ -134,11 +137,11 @@ mnTravel.controller('noteCtrl', ['$scope', '$localStorage', 'rfc4122', 'socket',
 mnTravel.controller('hotelCtrl', ['$scope', 'socket', function($scope, socket) {
     //console.log(apiservice);
     //Sockjs
-    $scope.countries=[
-      {id:1,name:'Bangkok,Thailand',code:'TH',city:'Bangkok'},
-      {id:2,name:'Phuket,Thailand',code:'TH',city:'Phuket'},
-      {id:3,name:'Pattaya,Thailand',code:'TH',city:'Pattaya'},
-      {id:4,name:'Patong,Thailand',code:'TH',city:'Patong'}
+    $scope.countries = [
+        { id: 1, name: 'Bangkok,Thailand', code: 'TH', city: 'Bangkok' },
+        { id: 2, name: 'Phuket,Thailand', code: 'TH', city: 'Phuket' },
+        { id: 3, name: 'Pattaya,Thailand', code: 'TH', city: 'Pattaya' },
+        { id: 4, name: 'Patong,Thailand', code: 'TH', city: 'Patong' }
     ];
     socket.onOpen(function(res) {
         console.log(res);
