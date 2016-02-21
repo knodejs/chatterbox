@@ -1,0 +1,21 @@
+SET PATH
+
+[
+  {chatterbox, [
+    {port, 8081},
+    {ssl, true},
+    {ssl_options, [{certfile,   "./config/localhost.crt"},
+                   {keyfile,    "./config/localhost.key"},
+                   {honor_cipher_order, false},
+                   {versions, ['tlsv1.2']},
+                   {alpn_preferred_protocols, [<<"h2">>]}]},
+    {chatterbox_static_content_handler, [
+                   {root_dir, "./priv"}
+    ]}
+  ]},
+  {lager, [
+    {handlers, [
+      {lager_console_backend, debug}
+    ]}
+  ]}
+].
