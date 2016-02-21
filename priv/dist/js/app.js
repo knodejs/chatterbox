@@ -21,15 +21,15 @@ if (typeof jQuery === "undefined") {
 var adminLTE = angular.module('adminLTE', ['ui.router', 'chart.js', 'angular-flot', 'ui.bootstrap', 'ng.sockjs', 'uuid', 'ngStorage', 'angucomplete-alt']);
 
 adminLTE.config(['$locationProvider','$urlRouterProvider', '$stateProvider', function($locationProvider,$urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('/dashboard1');
+    $urlRouterProvider.otherwise('/dashboard');
 
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
 
     $stateProvider
-        .state('dashboard1', {
-            url: '/dashboard1',
-            templateUrl: 'partials/dashboard1.html'
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: 'partials/dashboard.html'
         })
         .state('dashboard2', {
             url: '/dashboard2',

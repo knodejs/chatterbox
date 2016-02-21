@@ -4,7 +4,8 @@
 
 -export([
          spawn_handle/4,
-         handle/4
+         handle/4,
+         get_timestamp/0
         ]).
 
 -spec spawn_handle(
@@ -65,25 +66,20 @@ handle(ConnPid, StreamId, Headers, _ReqBody) ->
     case {filelib:is_file(File), filelib:is_dir(File)} of
         {_, true} ->
             ResponseHeaders = [
+                               {<<":server">>, <<"chatterbox">>},
+                               {<<":datetime">>, get_timestamp()},
                                {<<":status">>,<<"403">>}
                               ],
             http2_connection:send_headers(ConnPid, StreamId, ResponseHeaders),
             http2_connection:send_body(ConnPid, StreamId, <<"No soup for you!">>),
             ok;
         {true, false} ->
-            Ext = filename:extension(File),
-            MimeType = case Ext of
-                ".js" -> <<"text/javascript">>;
-                ".html" -> <<"text/html">>;
-                ".css" -> <<"text/css">>;
-                ".scss" -> <<"text/css">>;
-                ".woff" -> <<"application/font-woff">>;
-                ".ttf" -> <<"application/font-snft">>;
-                _ -> <<"unknown">>
-            end,
+            MimeType = mimetypes:get_mintype(File),
             {ok, Data} = file:read_file(File),
 
             ResponseHeaders = [
+                {<<":server">>, <<"chatterbox">>},
+                {<<":datetime">>, get_timestamp()},
                 {<<":status">>, <<"200">>},
                 {<<"content-type">>, MimeType}
             ],
@@ -128,6 +124,8 @@ handle(ConnPid, StreamId, Headers, _ReqBody) ->
             ok;
         {false, false} ->
             ResponseHeaders = [
+                               {<<":server">>, <<"chatterbox">>},
+                               {<<":datetime">>, get_timestamp()},
                                {<<":status">>,<<"404">>}
                               ],
             http2_connection:send_headers(ConnPid, StreamId, ResponseHeaders),
@@ -207,3 +205,9 @@ is_angular_refresh(Headers) ->
         _ -> 
             string:str(binary_to_list(Accept),"html") >0
     end.
+
+get_timestamp() ->
+    {{Year,Month,Day},{Hour,Min,Sec}} = erlang:localtime(),
+    Current=io_lib:format("~4.10.0B-~2.10.0B-~2.10.0B ~2.10.0B:~2.10.0B:~2.10.0B",
+        [Year, Month, Day, Hour, Min, Sec]),
+    list_to_binary(Current).
