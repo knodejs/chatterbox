@@ -4,23 +4,10 @@
 .content-wrapper p {
   padding: 0 10px;
   font-size: 16px;
-  position: relative;
-  z-index: 30;
-}
-.bring-up {
-  position: relative;
-  z-index: 30;
-}
-.nth-2-center > tbody > tr > td:last-of-type {
-  text-align: center!important;
-}
-.content {
-  font-size: 16px;
-  z-index: 500;
 }
 
 #components > h3 {
-  font-size: 25px;
+  font-size: 25px;  
   color: #000;
 }
 
@@ -33,11 +20,11 @@ ul {
 }
 .page-header {
   /*border-bottom: 1px solid #ddd;        */
-  margin: 20px 0 10px 0!important;
+  margin: 20px 0 20px 0;
   position: relative;
   z-index: 1;
   font-size: 30px;
-}
+}  
 .page-header span,
 .page-header a {
   z-index: 5;
@@ -54,12 +41,11 @@ ul {
 }
 .page-header:before,
 #components > h3:before {
-  display: block;
-  content: " ";
-  margin-top: -60px;
-  height: 60px;
-  visibility: hidden;
-  z-index: -10;
+  display: block; 
+  content: " "; 
+  margin-top: -60px; 
+  height: 60px; 
+  visibility: hidden; 
 }
 
 .lead {
@@ -113,7 +99,7 @@ p {
 }
 /* Hemisu Light */
 /* Original theme - http://noahfrederick.com/vim-color-scheme-hemisu/ */
-pre.prettyprint {
+.prettyprint {
   background: white;
   font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
   font-size: 12px;
@@ -121,12 +107,6 @@ pre.prettyprint {
   border: 1px solid #dedede!important;
   padding: 10px;
   max-height: 300px;
-  width: auto;
-  overflow: auto!important;
-}
-pre.prettyprint > code {
-  width: auto;
-  overflow: auto!important;
 }
 
 .pln {

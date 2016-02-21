@@ -9,23 +9,22 @@
   z-index: 1030;
   //Navbar
   > .navbar {
-    .transition(margin-left @transition-speed @transition-fn);
     margin-bottom: 0;
     margin-left: @sidebar-width;
     border: none;
     min-height: @navbar-height;
     border-radius: 0;
     .layout-top-nav & {
-      margin-left: 0;
+      margin-left: 0!important;
     }
-  }
+  }    
   //Navbar search text input
-  #navbar-search-input.form-control {
+  #navbar-search-input {
     background: rgba(255,255,255,.2);
     border-color: transparent;
     &:focus,
       &:active {
-      border-color: rgba(0,0,0,.1);
+      border-color: rgba(0,0,0,.1)!important;
       background: rgba(255,255,255,.9);
     }
     &::-moz-placeholder {
@@ -42,6 +41,7 @@
   //Navbar Right Menu
   .navbar-custom-menu,
   .navbar-right {
+    margin-right: 5px;
     float: right;
     @media (max-width: @screen-sm-max) {
        a {
@@ -76,10 +76,6 @@
     &:hover {
       color: #fff;
     }
-    &:focus,
-    &:active {
-      background: transparent;
-    }
   }
   .sidebar-toggle .icon-bar {
     display: none;
@@ -106,10 +102,9 @@
 
   //Logo bar
   .logo {
-    .transition(width @transition-speed @transition-fn);
     display: block;
     float: left;
-    height: @navbar-height;
+    height: 50px;
     font-size: 20px;
     line-height: 50px;
     text-align: center;
@@ -117,16 +112,6 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0 15px;
     font-weight: 300;
-    overflow: hidden;
-    //Add support to sidebar mini by allowing the user to create
-    //2 logo designs. mini and lg
-    .logo-lg {
-      //should be visibile when sidebar isn't collapsed
-      display: block;
-    }
-    .logo-mini {
-      display: none;
-    }
   }
   //Navbar Brand. Alternative logo with layout-top-nav
   .navbar-brand {
@@ -153,7 +138,7 @@
   > .breadcrumb {
     float: right;
     background: transparent;
-    margin-top: 0;
+    margin-top: 0px;
     margin-bottom: 0;
     font-size: 12px;
     padding: 7px 5px;
@@ -221,6 +206,7 @@
     .navbar {
       width: 100%;
       float: none;
+      position: relative!important;
     }
     .navbar {
       margin: 0;
@@ -229,16 +215,8 @@
       float: right;
     }
   }
-}
-
-.navbar-collapse.pull-left {
-  @media(max-width: @screen-sm-max) {
-    float: none!important;
-    + .navbar-custom-menu {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 40px;
-    }
+  .main-sidebar,
+  .left-side {
+    padding-top: 100px!important;    
   }
 }

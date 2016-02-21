@@ -1,11 +1,6 @@
 //AdminLTE 2 Variables.less
 //=========================
 
-//PATHS
-//--------------------------------------------------------
-
-@boxed-layout-bg-image-path: "../img/boxed-bg.jpg";
-
 //COLORS
 //--------------------------------------------------------
 
@@ -31,7 +26,7 @@
 
 //Side bar and logo width
 @sidebar-width: 230px;
-//Boxed layout maximum width
+//Bosex layout maximum width
 @boxed-layout-max-width: 1024px;
 //When the logo should go to the top of the screen
 @screen-header-collapse: @screen-xs-max;
@@ -41,33 +36,20 @@
 @link-hover-color: lighten(@link-color, 15%);
 
 //Body background (Affects main content background only)
-@body-bg: #ecf0f5;
+@body-bg: #ecf0f5;//darken(#f4f5f7, 4%);
 
 //SIDEBAR SKINS
 //--------------------------------------------------------
 
-//Dark sidebar
+//skin blue (light) sidebar vars
 @sidebar-dark-bg:                  #222d32;
 @sidebar-dark-hover-bg:            darken(@sidebar-dark-bg, 2%);
-@sidebar-dark-color:               lighten(@sidebar-dark-bg, 60%);
+@sidebar-dark-color:                lighten(@sidebar-dark-bg, 60%);
 @sidebar-dark-hover-color:         #fff;
+@sidebar-dark-border:              #dbdbdb;
 @sidebar-dark-submenu-bg:          lighten(@sidebar-dark-bg, 5%);
 @sidebar-dark-submenu-color:       lighten(@sidebar-dark-submenu-bg, 40%);
 @sidebar-dark-submenu-hover-color: #fff;
-
-//Light sidebar
-@sidebar-light-bg:                  #f9fafc;
-@sidebar-light-hover-bg:            lighten(#f0f0f1, 1.5%);
-@sidebar-light-color:               #444;
-@sidebar-light-hover-color:         #000;
-@sidebar-light-submenu-bg:          @sidebar-light-hover-bg;
-@sidebar-light-submenu-color:       #777;
-@sidebar-light-submenu-hover-color: #000;
-
-//CONTROL SIDEBAR
-//--------------------------------------------------------
-@control-sidebar-width: @sidebar-width;
-
 
 //BOXES
 //--------------------------------------------------------
@@ -92,7 +74,7 @@
 
 //FORMS
 //--------------------------------------------------------
-@input-radius: 0;
+@input-radius: 0px;
 
 //BUTTONS
 //--------------------------------------------------------
@@ -102,7 +84,7 @@
 
 //DIRECT CHAT
 //--------------------------------------------------------
-@direct-chat-height:                   250px;
+@direct-chat-height:                   250px; 
 @direct-chat-default-msg-bg:           @gray;
 @direct-chat-default-font-color:       #444;
 @direct-chat-default-msg-border-color: @gray;
@@ -117,4 +99,4 @@
 
 //Transition global options
 @transition-speed: .3s;
-@transition-fn:    ease-in-out;//cubic-bezier(0.32,1.25,0.375,1.15);
+@transition-fn:    cubic-bezier(0.32,1.25,0.375,1.15);

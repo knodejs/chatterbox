@@ -30,7 +30,7 @@
   &.box-default {
     border-top-color: @gray;
   }
-
+  
   // collapsed mode
   &.collapsed-box {
     .box-body,
@@ -38,7 +38,7 @@
       display: none;
     }
   }
-
+  
   .nav-stacked {
     > li {
       border-bottom: 1px solid @box-border-color;
@@ -69,15 +69,15 @@
   //use this class to get a colored header and borders
 
   &.box-solid {
-    border-top: 0;
+    border-top: 0px;
     > .box-header {
       .btn.btn-default {
         background: transparent;
       }
-      .btn,
+      .btn, 
       a {
         &:hover {
-          background: rgba(0,0,0,0.1);
+          background: rgba(0,0,0,0.1)!important;
         }
       }
     }
@@ -105,7 +105,7 @@
     > .box-header > .box-tools .btn {
       border: 0;
       box-shadow: none;
-    }
+    }    
 
     // Fix font color for tiles
     &[class*='bg'] {
@@ -132,10 +132,7 @@
     font-size: 12px;
     margin-bottom: 0.3em;
   }
-}
 
-.box,
-.overlay-wrapper {
   // Box overlay for LOADING STATE effect
   > .overlay,
   > .loading-img {
@@ -147,7 +144,7 @@
   }
 
   .overlay {
-    z-index: 50;
+    z-index: 1010;
     background: rgba(255, 255, 255, 0.7);
     .border-radius(@box-border-radius);
     > .fa {
@@ -164,17 +161,13 @@
   .overlay.dark {
     background: rgba(0, 0, 0, 0.5);
   }
-}
 
-//Add clearfix to header, body and footer
-.box-header,
-.box-body,
-.box-footer {
-  .clearfix();
 }
 
 //Box header
 .box-header {
+  //Add top left and top right border radius
+  .clearfix();
   color: #444;
   display: block;
   padding: @box-padding;
@@ -210,7 +203,7 @@
     [data-toggle="tooltip"] {
       position: relative;
     }
-
+    //float: none!important;
     &.pull-right {
       .dropdown-menu {
         right: 0;
@@ -225,13 +218,14 @@
   padding: 5px;
   font-size: 12px;
   background: transparent;
+  box-shadow: none!important;
   color: darken(@box-default-border-top-color, 20%);
   .open &,
   &:hover {
     color: darken(@box-default-border-top-color, 40%);
   }
-  &.btn:active {
-    box-shadow: none;
+  &:active {
+    outline: none!important;
   }
 }
 
@@ -245,6 +239,17 @@
   // Tables within the box body
   > .table {
     margin-bottom: 0;
+  }  
+
+  // Charts
+  > .chart {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    svg,
+    canvas {
+      width: 100%!important;
+    }
   }
 
   // Calendar within the box body
@@ -285,39 +290,6 @@
   }
 }
 
-//Comment Box
-.box-comments {
-  background: #f7f7f7;
-  .box-comment {
-    .clearfix();
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    &:last-of-type {
-      border-bottom: 0;
-    }
-    &:first-of-type {
-      padding-top: 0;
-    }
-    img {
-      &:extend(.img-sm);
-      float: left;
-    }
-  }
-  .comment-text {
-    margin-left: 40px;
-    color: #555;
-  }
-  .username {
-    color: #444;
-    display: block;
-    font-weight: 600;
-  }
-  .text-muted {
-    font-weight: 400;
-    font-size: 12px;
-  }
-}
-
 //Widgets
 //-----------
 
@@ -325,7 +297,7 @@
 
 .todo-list {
   margin: 0;
-  padding: 0;
+  padding: 0px 0px;
   list-style: none;
   overflow: auto;
   // Todo list element
@@ -338,6 +310,22 @@
     color: #444;
     &:last-of-type {
       margin-bottom: 0;
+    }
+    // Color varaity
+    &.danger {
+      border-left-color: @red;
+    }
+    &.warning {
+      border-left-color: @yellow;
+    }
+    &.info {
+      border-left-color: @aqua;
+    }
+    &.success {
+      border-left-color: @green;
+    }
+    &.primary {
+      border-left-color: @light-blue;
     }
 
     > input[type='checkbox']  {
@@ -385,23 +373,6 @@
     }
   }
 
-  // Color varaity
-  .danger {
-    border-left-color: @red;
-  }
-  .warning {
-    border-left-color: @yellow;
-  }
-  .info {
-    border-left-color: @aqua;
-  }
-  .success {
-    border-left-color: @green;
-  }
-  .primary {
-    border-left-color: @light-blue;
-  }
-
   .handle {
     display: inline-block;
     cursor: move;
@@ -420,17 +391,17 @@
     margin-bottom: 10px;
     // The image
     > img {
+      //display: inline-block;
       width: 40px;
       height: 40px;
       border: 2px solid transparent;
-      .border-radius(50%);
-    }
-
-    > .online {
-      border: 2px solid @green;
-    }
-    > .offline {
-      border: 2px solid @red;
+      .border-radius(50%)!important;
+      &.online {
+        border: 2px solid @green;
+      }
+      &.offline {
+        border: 2px solid @red;
+      }
     }
 
     // The message body
@@ -472,12 +443,4 @@
 //Input in box
 .box-input {
   max-width: 200px;
-}
-
-//A fix for panels body text color when placed within
-// a modal
-.modal {
-  .panel-body {
-    color: #444;
-  }
 }

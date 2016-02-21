@@ -5,7 +5,7 @@
 
 /*Dropdowns in general*/
 .dropdown-menu {
-  box-shadow: none;
+  box-shadow: @box-boxshadow;
   border-color: #eee;
   > li > a {
     color: #777;
@@ -24,10 +24,14 @@
   }
 }
 
-//Navbar custom dropdown menu
+/*
+    Navbar custom dropdown menu
+------------------------------------
+*/
 .navbar-nav > .notifications-menu,
 .navbar-nav > .messages-menu,
 .navbar-nav > .tasks-menu {
+  position: relative;
   //fix width and padding
   > .dropdown-menu {
     > li {
@@ -35,9 +39,10 @@
     }
     width: 280px;
     //Remove padding and margins
-    padding: 0 0 0 0;
-    margin: 0;
+    padding: 0 0 0 0!important;
+    margin: 0!important;
     top: 100%;
+    //.border-radius(4px)!important;
   }
   //Define header class
   > .dropdown-menu > li.header {
@@ -52,7 +57,7 @@
 
   //Define footer class
   > .dropdown-menu > li.footer > a {
-    .border-radius(0; 0; 4px; 4px);
+    .border-radius(0px; 0px; 4px; 4px);
     font-size: 12px;
     background-color: #fff;
     padding: 7px 10px;
@@ -94,7 +99,7 @@
 .navbar-nav > .notifications-menu {
   > .dropdown-menu > li .menu {
     // Links inside the menu
-    > li > a {
+    > li > a {      
       color: #444444;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -117,7 +122,7 @@
   > .dropdown-menu > li .menu {
     // Messages menu item
     > li > a {
-      margin: 0;
+      margin: 0px;
       //line-height: 20px;
       padding: 10px 10px;
       // User image
@@ -138,8 +143,8 @@
           color: #999999;
           font-size: 10px;
           position: absolute;
-          top: 0;
-          right: 0;
+          top: 0px;
+          right: 0px;
         }
       }
 
@@ -178,11 +183,11 @@
 //User menu
 .navbar-nav > .user-menu {
   > .dropdown-menu {
-    .border-top-radius(0);
+    .border-top-radius(0);    
     padding: 1px 0 0 0;
     border-top-width: 0;
     width: 280px;
-
+    
     &,
     > .user-body {
       .border-bottom-radius(4px);
@@ -237,11 +242,6 @@
       .clearfix();
       .btn-default {
         color: #666666;
-        &:hover {
-          @media (max-width: @screen-sm-max) {
-            background-color: #f9f9f9;
-          }
-        }
       }
     }
   }
@@ -295,41 +295,41 @@
 }
 @-webkit-keyframes flipInX {
   0% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    -webkit-transition-timing-function: ease-in;
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transition-timing-function: ease-in;
     opacity: 0;
   }
 
   40% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    -webkit-transition-timing-function: ease-in;
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transition-timing-function: ease-in;
   }
 
   60% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
     opacity: 1;
   }
 
   80% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
   }
 
   100% {
-    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
   }
 }
 
 /* Fix dropdown menu in navbars */
 .navbar-custom-menu > .navbar-nav {
-  > li {
-    position: relative;
-    > .dropdown-menu {
-      position: absolute;
-      right: 0;
-      left: auto;
+    > li {
+      position: relative;
+      > .dropdown-menu {
+        position: absolute;
+        right: 0;
+        left: auto;
+      }
     }
   }
-}
 @media (max-width: @screen-sm-max) {
   .navbar-custom-menu > .navbar-nav {
     float: right;

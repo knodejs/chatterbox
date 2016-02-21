@@ -1,5 +1,5 @@
-/*
- * Documentation JS script
+/* 
+ * Documentation specific JS script
  */
 $(function () {
   var slideToTop = $("<div />");
@@ -42,7 +42,7 @@ $(function () {
       scrollTop: 0
     }, 500);
   });
-  $(".sidebar-menu li:not(.treeview) a").click(function () {
+  $(".sidebar-menu li a").click(function () {
     var $this = $(this);
     var target = $this.attr("href");
     if (typeof target === 'string') {
@@ -50,14 +50,5 @@ $(function () {
         scrollTop: ($(target).offset().top) + "px"
       }, 500);
     }
-  });
-  //Skin switcher
-  var current_skin = "skin-blue";
-  $('#layout-skins-list [data-skin]').click(function(e) {
-    e.preventDefault();
-    var skinName = $(this).data('skin');
-    $('body').removeClass(current_skin);
-    $('body').addClass(skinName);
-    current_skin = skinName;
   });
 });
