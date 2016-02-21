@@ -12,7 +12,7 @@ start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 init([]) ->
-    {ok, Port} = application:get_env(chatterbox, port),
+    Port=port(),
     Options = [
         binary,
         {reuseaddr, true},
@@ -37,7 +37,7 @@ init([]) ->
                 temporary, 1000, worker, [http2_socket]}],
     io:format("app listening on port ~p~n",[Port]),
     %%AUTO START BROWSER FOR TEST
-    os:cmd("start " ++ "https://localhost:"++integer_to_list(Port)++"/"),
+    %%os:cmd("start " ++ "https://localhost:"++integer_to_list(Port)++"/"),
     {ok, {Restart, Children}}.
 
 start_socket() ->
@@ -46,3 +46,13 @@ start_socket() ->
 empty_listeners() ->
     {ok, ConcurrentAcceptors} = application:get_env(chatterbox, concurrent_acceptors),
     [ start_socket() || _ <- lists:seq(1,ConcurrentAcceptors)].
+
+
+port() ->
+    case os:getenv("PORT") of
+        false ->
+            {ok, Port} = application:get_env(chatterbox, port),
+            Port;
+        Other ->
+            list_to_integer(Other)
+    end.
