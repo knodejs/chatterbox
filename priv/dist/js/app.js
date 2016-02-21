@@ -18,9 +18,9 @@ if (typeof jQuery === "undefined") {
     throw new Error("AdminLTE requires jQuery");
 }
 
-var mnTravel = angular.module('mnTravel', ['ui.router', 'chart.js', 'angular-flot', 'ui.bootstrap', 'ng.sockjs', 'uuid', 'ngStorage', 'angucomplete-alt']);
+var adminLTE = angular.module('adminLTE', ['ui.router', 'chart.js', 'angular-flot', 'ui.bootstrap', 'ng.sockjs', 'uuid', 'ngStorage', 'angucomplete-alt']);
 
-mnTravel.config(['$locationProvider','$urlRouterProvider', '$stateProvider', function($locationProvider,$urlRouterProvider, $stateProvider) {
+adminLTE.config(['$locationProvider','$urlRouterProvider', '$stateProvider', function($locationProvider,$urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/dashboard1');
 
     // use the HTML5 History API
@@ -97,11 +97,11 @@ mnTravel.config(['$locationProvider','$urlRouterProvider', '$stateProvider', fun
     ;
 }]);
 
-mnTravel.value('ngSockRetry', 10000);
-mnTravel.value('ngSockUrl', '/broadcast');
+adminLTE.value('ngSockRetry', 10000);
+adminLTE.value('ngSockUrl', '/broadcast');
 
 
-mnTravel.controller('noteCtrl', ['$scope', '$localStorage', 'rfc4122', 'socket', function($scope, $localStorage, rfc4122, socket) {
+adminLTE.controller('noteCtrl', ['$scope', '$localStorage', 'rfc4122', 'socket', function($scope, $localStorage, rfc4122, socket) {
     //console.log($localStorage.uuid4);
     $scope.uuid = "";
     $scope.init = function() {
@@ -134,7 +134,7 @@ mnTravel.controller('noteCtrl', ['$scope', '$localStorage', 'rfc4122', 'socket',
 
 }]);
 
-mnTravel.controller('hotelCtrl', ['$scope', 'socket', function($scope, socket) {
+adminLTE.controller('hotelCtrl', ['$scope', 'socket', function($scope, socket) {
     //console.log(apiservice);
     //Sockjs
     $scope.countries = [
@@ -164,7 +164,7 @@ mnTravel.controller('hotelCtrl', ['$scope', 'socket', function($scope, socket) {
 
 
 
-mnTravel.directive('sidebar', function() {
+adminLTE.directive('sidebar', function() {
     return {
         restrict: 'C',
         compile: function(tElement, tAttrs, transclude) {
@@ -173,7 +173,7 @@ mnTravel.directive('sidebar', function() {
         }
     };
 });
-mnTravel.directive('header', function() {
+adminLTE.directive('header', function() {
     return {
         restrict: 'E',
         templateUrl: 'templates/header.html',
@@ -183,7 +183,7 @@ mnTravel.directive('header', function() {
     };
 });
 
-mnTravel.directive('knob', function() {
+adminLTE.directive('knob', function() {
     return {
         restrict: 'C',
         compile: function(tElement, tAttrs, transclude) {
@@ -246,7 +246,7 @@ mnTravel.directive('knob', function() {
     }
 });
 
-mnTravel.directive('sparkline', function() {
+adminLTE.directive('sparkline', function() {
     return {
         restrict: 'C',
         compile: function(tElement, tAttrs, transclude) {
@@ -261,7 +261,7 @@ mnTravel.directive('sparkline', function() {
 /*
 Charts js
 */
-mnTravel.controller('LineCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+adminLTE.controller('LineCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
     $scope.series = ['Series A', 'Series B'];
     $scope.data = [
@@ -289,7 +289,7 @@ mnTravel.controller('LineCtrl', ['$scope', '$timeout', function($scope, $timeout
     }, 3000);
 }]);
 
-mnTravel.controller('BarCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+adminLTE.controller('BarCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     $scope.options = {
         scaleShowVerticalLines: false
     };
@@ -306,7 +306,7 @@ mnTravel.controller('BarCtrl', ['$scope', '$timeout', function($scope, $timeout)
     }, 3000);
 }]);
 
-mnTravel.controller('DoughnutCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+adminLTE.controller('DoughnutCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     $scope.labels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
     $scope.data = [0, 0, 0];
 
@@ -315,17 +315,17 @@ mnTravel.controller('DoughnutCtrl', ['$scope', '$timeout', function($scope, $tim
     }, 500);
 }]);
 
-mnTravel.controller('PieCtrl', function($scope) {
+adminLTE.controller('PieCtrl', function($scope) {
     $scope.labels = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
     $scope.data = [300, 500, 100];
 });
 
-mnTravel.controller('PolarAreaCtrl', function($scope) {
+adminLTE.controller('PolarAreaCtrl', function($scope) {
     $scope.labels = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
     $scope.data = [300, 500, 100, 40, 120];
 });
 
-mnTravel.controller('BaseCtrl', function($scope) {
+adminLTE.controller('BaseCtrl', function($scope) {
     $scope.labels = ['Download Sales', 'Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
     $scope.data = [300, 500, 100, 40, 120];
     $scope.type = 'PolarArea';
@@ -335,7 +335,7 @@ mnTravel.controller('BaseCtrl', function($scope) {
     };
 });
 
-mnTravel.controller('RadarCtrl', function($scope) {
+adminLTE.controller('RadarCtrl', function($scope) {
     $scope.labels = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
 
     $scope.data = [
@@ -348,7 +348,7 @@ mnTravel.controller('RadarCtrl', function($scope) {
     };
 });
 
-mnTravel.controller('StackedBarCtrl', function($scope) {
+adminLTE.controller('StackedBarCtrl', function($scope) {
     $scope.labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     $scope.type = 'StackedBar';
 
@@ -358,7 +358,7 @@ mnTravel.controller('StackedBarCtrl', function($scope) {
     ];
 });
 
-mnTravel.controller('DataTablesCtrl', function($scope) {
+adminLTE.controller('DataTablesCtrl', function($scope) {
     $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
     $scope.data = [
         [65, 59, 80, 81, 56, 55, 40],
@@ -392,7 +392,7 @@ mnTravel.controller('DataTablesCtrl', function($scope) {
 /*
 Flot Charts
 */
-mnTravel.controller('FlotInteractive', ['$scope', '$log', '$element', function($scope, $log, $element) {
+adminLTE.controller('FlotInteractive', ['$scope', '$log', '$element', function($scope, $log, $element) {
     $scope.$log = $log;
     $scope.data = [];
     $scope.myChartOptions = {
@@ -459,7 +459,7 @@ mnTravel.controller('FlotInteractive', ['$scope', '$log', '$element', function($
     };
 
 }]);
-mnTravel.controller('FlotLineChart', function($scope) {
+adminLTE.controller('FlotLineChart', function($scope) {
     var sin = [],
         cos = [];
     for (var i = 0; i < 14; i += 0.5) {
@@ -504,7 +504,7 @@ mnTravel.controller('FlotLineChart', function($scope) {
         }
     };
 });
-mnTravel.controller('FlotAreaChart', function($scope) {
+adminLTE.controller('FlotAreaChart', function($scope) {
     var areaData = [
         [2, 88.0],
         [3, 93.3],
@@ -546,7 +546,7 @@ mnTravel.controller('FlotAreaChart', function($scope) {
         }
     };
 });
-mnTravel.controller('FlotBarChart', function($scope) {
+adminLTE.controller('FlotBarChart', function($scope) {
     $scope.myData = [{
         data: [
             ["January", 10],
@@ -577,7 +577,7 @@ mnTravel.controller('FlotBarChart', function($scope) {
         }
     };
 });
-mnTravel.controller('FlotDonutChart', function($scope) {
+adminLTE.controller('FlotDonutChart', function($scope) {
     $scope.myData = [{
         label: "Series2",
         data: 30,
@@ -616,7 +616,7 @@ mnTravel.controller('FlotDonutChart', function($scope) {
     }
 });
 
-mnTravel.controller('ChatController', function($scope, $http, $filter) {
+adminLTE.controller('ChatController', function($scope, $http, $filter) {
     $http.get('/partials/widgets/dialog1.json')
         .success(function(data) {
             $scope.messages = data;
@@ -631,7 +631,7 @@ mnTravel.controller('ChatController', function($scope, $http, $filter) {
  * @usage $.AdminLTE.boxWidget.activate()
  *        Set all of your option in the main $.AdminLTE.options object
  */
-mnTravel.directive('box', function() {
+adminLTE.directive('box', function() {
     return {
         restrict: 'C',
         compile: function(tElement, tAttr, transclude) {
@@ -689,7 +689,7 @@ mnTravel.directive('box', function() {
     }
 });
 
-mnTravel.directive('chat', function() {
+adminLTE.directive('chat', function() {
     return {
         restrict: 'E',
         //template: '<h1>Hello World</h1>',
