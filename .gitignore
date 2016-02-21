@@ -17,3 +17,4 @@ rebar3
 log
 priv/bower_components
 priv/node_modules
+test/client_server_SUITE_data/bower_components
