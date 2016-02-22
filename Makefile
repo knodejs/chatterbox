@@ -22,6 +22,9 @@ clean: $(REBAR3)
 all: $(REBAR3)
 	@$(REBAR3) do clean, compile, eunit, ct, dialyzer
 
+prod: $(REBAR3)
+	@$(REBAR3) do release -i true --dev-mode false, tar
+
 rel: all
 	@$(REBAR3) release
 
