@@ -25,6 +25,9 @@ all: $(REBAR3)
 prod: $(REBAR3)
 	@$(REBAR3) do release -i true --dev-mode false, tar
 
+run: $(REBAR3)
+	@$(REBAR3) shell
+
 rel: all
 	@$(REBAR3) release
 
